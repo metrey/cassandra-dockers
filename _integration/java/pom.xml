@@ -1,0 +1,17 @@
+<dependency>
+    <groupId>com.datastax.oss</groupId>
+    <artifactId>java-driver-core</artifactId>
+    <version>4.14.0</version> <!-- Check for the latest version -->
+</dependency>
+
+<dependency>
+    <groupId>com.datastax.oss</groupId>
+    <artifactId>java-driver-core-metrics</artifactId>
+    <version>4.14.0</version> <!-- Check for the latest version -->
+</dependency>
+
+<dependency>
+    <groupId>com.datastax.oss</groupId>
+    <artifactId>java-driver-core-logging</artifactId>
+    <version>4.14.0</version> <!-- Check for the latest version -->
+</dependency>

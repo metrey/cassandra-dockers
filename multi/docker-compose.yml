@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  cassandra1:
+    image: cassandra:latest
+    container_name: cassandra1
+    ports:
+      - "9042:9042"  # External port for CQL
+    volumes:
+      - ../_datastore/cassandra1:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cass_cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_SEEDS=cassandra1,cassandra2,cassandra3
+    networks:
+      - cassandra_net
+
+  cassandra2:
+    image: cassandra:latest
+    container_name: cassandra2
+    ports:
+      - "9043:9042"  # External port for CQL
+    volumes:
+      - ../_datastore/cassandra2:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cass_cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_SEEDS=cassandra1,cassandra2,cassandra3
+    networks:
+      - cassandra_net
+
+  cassandra3:
+    image: cassandra:latest
+    container_name: cassandra3
+    ports:
+      - "9044:9042"  # External port for CQL
+    volumes:
+      - ../_datastore/cassandra3:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cass_cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_SEEDS=cassandra1,cassandra2,cassandra3
+    networks:
+      - cassandra_net
+
+networks:
+  cassandra_net:
+    driver: bridge
